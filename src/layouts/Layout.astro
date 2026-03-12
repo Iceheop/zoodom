@@ -1,33 +1,10 @@
 ---
-const canonicalUrl = 'https://zoodomi.netlify.app';
-const socialImageUrl = new URL('/cover.png', canonicalUrl).href;
+import Head from '../components/Head.astro';
 ---
 <!doctype html>
 <html lang="es">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <meta
-            name="description"
-            content="ZOODOM - Parque Zoológico Nacional. Descubre la fauna y flora en nuestro zoológico."
-        />
-        <meta name="keywords" content="zoo, zoológico, animales, naturaleza, parque, rd" />
-        <meta name="author" content="Ronald Santana" />
-        <title>ZOODOM - Parque Zoológico nacional</title>
-        <link rel="canonical" href={canonicalUrl} />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="es_DO" />
-        <meta property="og:site_name" content="ZOODOM" />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:title" content="ZOODOM - Parque Zoológico Nacional" />
-        <meta property="og:description" content="Descubre la fauna y flora en nuestro zoológico." />
-        <meta property="og:image" content={socialImageUrl} />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Portada de ZOODOM - Parque Zoológico Nacional" />
-
+        <Head />
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"

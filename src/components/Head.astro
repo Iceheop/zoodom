@@ -1,0 +1,37 @@
+---
+interface Props {
+    title?: string;
+    description?: string;
+    canonicalUrl?: string;
+    image?: string;
+}
+
+const {
+    title = 'ZOODOM - Parque Zoológico Nacional',
+    description = 'ZOODOM - Parque Zoológico Nacional. Descubre la fauna y flora en nuestro zoológico.',
+    canonicalUrl = 'https://zoodomi.netlify.app',
+    image = '/cover.png',
+} = Astro.props;
+
+const socialImageUrl = new URL(image, canonicalUrl).href;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="description" content={description} />
+<meta name="keywords" content="zoo, zoológico, animales, naturaleza, parque, rd" />
+<meta name="author" content="Ronald Santana" />
+<title>{title}</title>
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_DO" />
+<meta property="og:site_name" content="ZOODOM" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageUrl} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Portada de ZOODOM - Parque Zoológico Nacional" />
