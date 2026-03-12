@@ -16,14 +16,22 @@ const {
 const socialImageUrl = new URL(image, canonicalUrl).href;
 ---
 
+<!-- Meta generales -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <meta name="description" content={description} />
 <meta name="keywords" content="zoo, zoológico, animales, naturaleza, parque, rd" />
 <meta name="author" content="Ronald Santana" />
+<!-- Titulo -->
 <title>{title}</title>
+<!-- CSS -->
+<link rel="stylesheet" href="/src/assets/main.css" />
+<!-- Fuentes -->
 <link rel="canonical" href={canonicalUrl} />
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
+<!-- Meta de Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="es_DO" />
 <meta property="og:site_name" content="ZOODOM" />
