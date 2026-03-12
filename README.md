@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Astro Starter Kit: Basics
 
 ```sh
@@ -44,3 +45,7 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+=======
+# Zoodom
+Diseñar y desarrollar un sitio en producción con Astro + HTML/CSS/JS + Bootstrap que mejore usabilidad, accesibilidad y visibilidad orgánica, e integre Fichas de especies y Calendario de eventos como secciones prioritarias, además de “Planifica tu visita”, blog educativo y recursos multimedia.
+>>>>>>> eb32689ebe6fa77acab76b01eaaf98432ae2f1ff
