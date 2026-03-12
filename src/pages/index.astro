@@ -1,7 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import logo from'../assets/logo.svg';
+import HeroImg from '../assets/hero-img.png';
+import Texture from '../assets/texture.png';
 ---
 
 <Layout>
-	<h1>Hola mundo.</h1>
+	<main>
+		<nav class="navbar navbar-expand-lg">
+			<section class="container px-5 py-4">
+				<a class="navbar-brand" href="#">
+					<img src={logo.src} class="logo" alt="">
+				</a>
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-4">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Especies</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Galeria</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Blog</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Contacto</a>
+					</li>
+				</ul>
+			</section>
+		</nav>
+		<header class="overflow-hidden">
+			<section class="container px-4 px-lg-5 py-5 my-5">
+				<section class="row d-flex justify-content-between align-items-center">
+					<section class="col-lg-6 col-md-6 col-12">
+						<h1>Bienvenido a nuestro zoológico</h1>
+						<p>Planea una salida en familia a nuestro parque zoológico nacional para que te diviertas en una esperiencia innovidable.</p>
+						<button class="btn btn-success px-5 py-2 rounded-pill">Reservar ahora</button>
+					</section>
+					<section class="col-lg-6 col-md-6 col-12 position-relative">
+						<img src={HeroImg.src} class="img-fluid position-absolute" alt="Hero Image">
+					</section>
+				</section>
+			</section>
+		</header>
+		<section id="" >
+			<img src={Texture.src} alt="Texture" class="img-fluid ">
+			<section class="container">
+			</section>
+		</section>
+	</main>
 </Layout>
+
