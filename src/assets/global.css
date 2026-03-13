@@ -112,3 +112,6 @@ a.active {
     background-position: center;
     background-attachment: fixed;
 }
+.navbar-toggler {
+    border-color: var(--color-brand-green-800);
+}
