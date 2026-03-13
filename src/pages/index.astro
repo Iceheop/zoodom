@@ -9,7 +9,20 @@ import HeroImg from '../assets/hero.png';
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<section class="container px-3 px-lg-5 py-3">
 				<a class="navbar-brand me-0" href="#">
-					<img src={logo.src} class="logo" alt="Logo" />
+					<!-- Móvil -->
+					<img
+						src={logo.src}
+						class="img-fluid d-inline d-sm-none"
+						width="80"
+						alt="Logo"
+					/>
+					<!-- Tablet/Desktop -->
+					<img
+						src={logo.src}
+						class="img-fluid d-none d-sm-inline"
+						width="110"
+						alt="Logo"
+					/>
 				</a>
 
 				<button
