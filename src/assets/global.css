@@ -70,6 +70,10 @@ html, body {
     width: 110px;
     height: auto;
 }
+.hero-img {
+    max-width: 600px;
+    height: auto;
+}
 h1 {
     font-size: 64px;
     font-weight: 700;
@@ -81,6 +85,30 @@ p {
     margin-top: 20px;
     margin-bottom: 30px;
 }
-/* header {
-    min-height: 600px;
-} */
+.btn-brand {
+    background-color: var(--color-brand-green-800);
+    color: var(--color-neutral-white-900);
+    border: none;
+}
+.btn-brand:hover {
+    background-color: var(--color-brand-green-700);
+    color: var(--color-neutral-white-900);
+}
+.btn-brand:active {
+    background-color: var(--color-brand-green-600);
+    color: var(--color-neutral-white-900);
+}
+.text-primary {
+    color: var(--color-brand-green-800);
+}
+a.active {
+    color: var(--color-brand-green-800) !important;
+    font-weight: 600;
+}
+#animals {
+    background-image: url('./texture-img.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
