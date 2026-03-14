@@ -3,5 +3,5 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://zoodomi.netlify.app',
+    site: 'https://www.zoodom.lat',
 });
