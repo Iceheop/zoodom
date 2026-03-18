@@ -47,10 +47,10 @@ Más información en la guía oficial de Astro sobre estructura de proyectos (do
 
 ## Objetivos clave
 
-- Usabilidad: navegación clara, diseño responsive con Bootstrap.
-- Accesibilidad: etiquetas ARIA, contraste adecuado, soporte multilenguaje.
-- SEO: URLs semánticas, metadatos optimizados, sitemap.
-- Educación y conservación: contenido atractivo y multimedia para sensibilizar al público.
+- **Usabilidad**: navegación clara, diseño responsive con Bootstrap.
+- **Accesibilidad**: etiquetas ARIA, contraste adecuado, soporte multilenguaje.
+- **SEO**: URLs semánticas, metadatos optimizados, sitemap.
+- **Educación y conservación**: contenido atractivo y multimedia para sensibilizar al público.
 
 ## Despliegue
 El sitio puede desplegarse fácilmente en plataformas como:
