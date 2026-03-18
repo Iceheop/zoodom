@@ -55,9 +55,9 @@ Más información en la guía oficial de Astro sobre estructura de proyectos (do
 ## Despliegue
 El sitio puede desplegarse fácilmente en plataformas como:
 
-- Vercel
-- Netlify
-- GitHub Pages
+- **Vercel**
+- **Netlify**
+- **GitHub Pages**
 
 Ejemplo de despliegue en Vercel:
 
