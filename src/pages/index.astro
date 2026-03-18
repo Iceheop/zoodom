@@ -2,10 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import logo from'../assets/logo.svg';
 import HeroImg from '../assets/hero.webp';
+import Shape from '../assets/shape.svg';
+import Bufalo from '../assets/bufalo.webp';
 ---
 
 <Layout>
 	<main>
+		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<section class="container px-3 px-lg-5 py-3">
 				<a class="navbar-brand me-0" href="#">
@@ -48,48 +51,86 @@ import HeroImg from '../assets/hero.webp';
 				</section>
 			</section>
 		</nav>
-		<header class="position-relative py-md-5 py-lg-5">
-			<section class="container px-3 px-lg-5 pb-5 py-lg-5 my-5">
-				<section class="row d-flex justify-content-between align-items-center">
+		<!-- Header -->
+		<header class="position-relative py-md-5 py-lg-5" style="min-height: 600px;">
+			<section class="container px-3 px-lg-5 pb-lg-5 py-lg-3 my-5">
+				<section class="row d-flex justify-content-between align-items-center position-relative h-100">
 					<section class="col-lg-6 col-md-6 col-12">
 						<h1 class="display-1 fw-bold">Bienvenido a nuestro zoológico</h1>
-						<p>Planea una salida en familia a nuestro parque zoológico nacional para que te sectioniertas en una esperiencia innovidable.</p>
+						<p>Planea una salida en familia a nuestro parque zoológico nacional para que te sientas en una experiencia inolvidable.</p>
 						<button class="btn btn-brand px-5 py-2 rounded-pill">Reservar ahora</button>
 					</section>
 					<section class="col-lg-6 col-md-6 col-12 d-none d-md-block">
-						<img src={HeroImg.src} class="img-fluid hero-img position-absolute bottom-0 end-0 pe-5" alt="Hero Image" loading="eager">
+						<img src={HeroImg.src} class="img-fluid hero-img w-100 position-absolute bottom-0 end-0" alt="Hero Image" loading="eager">
 					</section>
 				</section>
 			</section>
 		</header>
+		<!-- Animals -->
 		<section id="animals" class="py-5">
-			<section class="container">
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
+			<section class="container px-3 px-lg-5 py-lg-5">
+				<!-- Header -->
+				<header class="d-flex justify-content-between">
+					<section>
+						<h2 class="display-4 fw-bold text-white m-0">Animales</h2>
+						<p class="text-white m-0">Descubre nuestra increíble variedad de animales en su hábitat natural.</p>
+					</section>
+					<section>
+						<a href="#">
+							<i class="text-white bi bi-arrow-right-short display-4"></i>
+						</a>
+					</section>
+				</header>
+				<!-- Content -->
+				<section class="row py-5 my-5 m-auto gap-5">
+					<article class="card col-md-6 col-lg-4 bg-overlay p-5 rounded-3 text-white position-relative overflow-hidden">
+						<h2 class="fw-bold">Bisonte Americano</h2>
+						<h3 class="fw-light">Bison bison</h3>
+						<p class="text-white ">Los Bisontes tienen un pelaje de color marrón oscuro durante el invierno, y uno más liviano de color marrón claro durante el verano.</p>
+						<section class="mb-card d-flex gap-4">
+							<a href="#">
+								<i class="text-white bi bi-info-circle-fill display-6"></i>
+							</a>
+							<a href="#">
+								<i class="text-white bi bi-plus-circle-fill display-6"></i>
+							</a>
+						</section>
+						<img src={Shape.src} alt="Shape" class="position-absolute top-100 start-100 translate-middle shape">
+						<img src={Bufalo.src} alt="Bufalo" class="img-fluid position-absolute bottom-0 end-0" height="300px">
+					</article>
+					<article class="card col-md-6 col-lg-4 bg-overlay p-5 rounded-3 text-white position-relative overflow-hidden">
+						<h2 class="fw-bold">Bisonte Americano</h2>
+						<h3 class="fw-light">Bison bison</h3>
+						<p class="text-white ">Los Bisontes tienen un pelaje de color marrón oscuro durante el invierno, y uno más liviano de color marrón claro durante el verano.</p>
+						<section class="mb-card d-flex gap-4">
+							<a href="#">
+								<i class="text-white bi bi-info-circle-fill display-6"></i>
+							</a>
+							<a href="#">
+								<i class="text-white bi bi-plus-circle-fill display-6"></i>
+							</a>
+						</section>
+						<img src={Shape.src} alt="Shape" class="position-absolute top-100 start-100 translate-middle shape">
+						<img src={Bufalo.src} alt="Bufalo" class="img-fluid position-absolute bottom-0 end-0" height="300px">
+					</article>
+					<article class="card col-md-6 col-lg-4 bg-overlay p-5 rounded-3 text-white position-relative overflow-hidden">
+						<h2 class="fw-bold">Bisonte Americano</h2>
+						<h3 class="fw-light">Bison bison</h3>
+						<p class="text-white ">Los Bisontes tienen un pelaje de color marrón oscuro durante el invierno, y uno más liviano de color marrón claro durante el verano.</p>
+						<section class="mb-card d-flex gap-4">
+							<a href="#">
+								<i class="text-white bi bi-info-circle-fill display-6"></i>
+							</a>
+							<a href="#">
+								<i class="text-white bi bi-plus-circle-fill display-6"></i>
+							</a>
+						</section>
+						<img src={Shape.src} alt="Shape" class="position-absolute top-100 start-100 translate-middle shape">
+						<img src={Bufalo.src} alt="Bufalo" class="img-fluid position-absolute bottom-0 end-0" height="300px">
+					</article>
+				</section>
 			</section>
-		</section>
-			<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-					<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-					<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-					<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
-				<br><br><br><br><br><br>
+		</section>ç
 	</main>
 </Layout>
 

@@ -73,6 +73,7 @@ html, body {
 .hero-img {
     max-width: 600px;
     height: auto;
+    top: -12px !important;
 }
 h1 {
     font-size: 64px;
@@ -114,4 +115,19 @@ a.active {
 }
 .navbar-toggler {
     border-color: var(--color-brand-green-800);
+}
+.bg-overlay {
+    background-color: var(--color-neutral-overlay-900);
+}
+.mb-card {
+    margin-bottom: 225px;
+}
+.shape {
+    width: 1000px;
+    height: auto;
+}
+.card {
+    width: 375px;
+    border-radius: 75px 0 75px 0 !important;
+    border: none !important;
 }
