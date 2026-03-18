@@ -106,7 +106,7 @@ a.active {
     font-weight: 600;
 }
 #animals {
-    background-image: url('./texture.png');
+    background-image: url('./texture.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
