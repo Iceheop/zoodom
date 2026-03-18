@@ -1,3 +1,5 @@
+![Portada del proyecto](./public/cover.png)
+
 # ZOODOM
 
 Proyecto de diseño y desarrollo de un sitio en producción con **Astro + HTML/CSS/JS + Bootstrap** que busca mejorar **usabilidad, accesibilidad y visibilidad orgánica**.  
