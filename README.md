@@ -11,10 +11,56 @@ El sitio integrará como secciones prioritarias:
 
 ---
 
-## 🚀 Instalación
+## Instalación
 
 Clona el repositorio y crea el proyecto Astro:
 
 ```sh
 npm create astro@latest -- --template basics
 ```
+Instala dependencias:
+
+```sh
+npm install
+```
+
+## Estructura del proyecto
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets/
+│   │   └── astro.svg
+│   ├── components/
+│   │   └── Welcome.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+Más información en la guía oficial de Astro sobre estructura de proyectos (docs.astro.build in Bing).
+
+## Objetivos clave
+
+- Usabilidad: navegación clara, diseño responsive con Bootstrap.
+- Accesibilidad: etiquetas ARIA, contraste adecuado, soporte multilenguaje.
+- SEO: URLs semánticas, metadatos optimizados, sitemap.
+- Educación y conservación: contenido atractivo y multimedia para sensibilizar al público.
+
+## Despliegue
+El sitio puede desplegarse fácilmente en plataformas como:
+
+- Vercel
+- Netlify
+- GitHub Pages
+
+Ejemplo de despliegue en Vercel:
+
+```sh
+npm run build
+vercel deploy
+```
+
