@@ -1,0 +1,54 @@
+---
+import Section from "../layouts/Section.astro";
+import ctaBgImg from "../assets/images/gallery-familia-zoodom.webp";
+---
+
+<Section id="cta">
+    <article class="cta-banner position-relative overflow-hidden rounded-4 text-white d-flex align-items-center justify-content-center text-center px-3">
+        <img src={ctaBgImg.src} alt="Familias visitando el zoologico" class="cta-background" loading="lazy" />
+        <section class="cta-overlay"></section>
+
+        <section class="cta-content position-relative z-1">
+            <h2 class="fw-bold mb-2">Haz una visita a nuestra casa natural</h2>
+            <p class="mb-4">Vive una experiencia inolvidable entre especies increibles y actividades para toda la familia.</p>
+            <a href="#" class="btn btn-light rounded-pill px-5 fw-semibold">Planifica</a>
+        </section>
+    </article>
+</Section>
+
+<style>
+    .cta-banner {
+        min-height: 340px;
+        isolation: isolate;
+    }
+
+    .cta-background {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    .cta-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(56, 142, 73, 0.85) 100%);
+        z-index: -1;
+    }
+
+    .cta-content {
+        max-width: 720px;
+    }
+
+    .cta-content h2 {
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+    }
+
+    .cta-content p {
+        color: rgba(255, 255, 255, 0.92);
+        margin-top: 0;
+    }
+</style>

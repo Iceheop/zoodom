@@ -1,0 +1,120 @@
+---
+import Section from "../layouts/Section.astro";
+import familiaZoodomImg from "../assets/images/gallery-familia-zoodom.webp";
+import visitasGuiadasImg from "../assets/images/gallery-camino-safari.webp";
+import sesionesFotoImg from "../assets/images/gallery-flamencos.webp";
+
+const events = [
+    {
+        title: "Labor Social",
+        description:
+            "El Zoologico Nacional, en cumplimiento de la ley Num. 179-03 del Ministerio de Educacion, realiza labores educativas para estudiantes de nivel medio y actividades comunitarias en Zooodom.",
+        image: familiaZoodomImg.src,
+        imageAlt: "Actividad social en el zoologico",
+        reverse: false
+    },
+    {
+        title: "Visitas Guiadas",
+        description:
+            "Las visitas guiadas son recorridos educativos por el zoologico nacional. Estan a cargo de guias capacitados que acompanan al visitante y comparten informacion sobre cada especie.",
+        image: visitasGuiadasImg.src,
+        imageAlt: "Recorrido guiado en el zoologico",
+        reverse: true
+    },
+    {
+        title: "Sesiones Fotograficas",
+        description:
+            "El parque tiene habilitado el servicio de sesiones fotograficas para familias, centros educativos y amantes de la naturaleza, con escenas unicas dentro del parque.",
+        image: sesionesFotoImg.src,
+        imageAlt: "Sesion fotografica en el zoologico",
+        reverse: false
+    }
+];
+---
+
+<!-- Section Events -->
+<Section id="events">
+    <header class="d-flex justify-content-between align-items-start gap-3">
+        <section>
+            <h2 class="display-4 fw-bold text-primary m-0">Eventos</h2>
+            <p class="text-primary m-0">Descubre nuestros eventos locales</p>
+        </section>
+        <section>
+            <a href="#">
+                <i class="text-primary bi bi-arrow-right-short display-4"></i>
+            </a>
+        </section>
+    </header>
+
+    <section class="events-list mt-5 pt-5">
+        {events.map((event) => (
+            <article class="row align-items-center g-4 g-lg-5 event-row">
+                <section class={`col-12 col-lg-4 ${event.reverse ? "order-lg-2" : "order-lg-1"}`}>
+                    <h3 class="display-6 fw-bold text-primary mb-3">{event.title}</h3>
+                    <p class="text-primary mb-4 event-copy">{event.description}</p>
+                    <a href="#" class="btn btn-brand rounded-pill px-5 fw-semibold">Leer más</a>
+                </section>
+
+                <section class={`col-12 col-lg-8 ${event.reverse ? "order-lg-1" : "order-lg-2"}`}>
+                    <figure class={`event-media m-0 ${event.reverse ? "event-media--left" : "event-media--right"}`}>
+                        <img src={event.image} alt={event.imageAlt} class="img-fluid w-100 event-image" loading="lazy" />
+                    </figure>
+                </section>
+            </article>
+        ))}
+    </section>
+</Section>
+
+<style>
+    .events-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2.25rem;
+    }
+
+    .event-row {
+        position: relative;
+    }
+
+    .event-copy {
+        line-height: 1.35;
+    }
+
+    .event-media {
+        position: relative;
+        border-radius: 3rem 0 3rem 0;
+        overflow: hidden;
+    }
+
+    .event-media::after {
+        content: "";
+        position: absolute;
+        width: clamp(140px, 26vw, 220px);
+        height: clamp(140px, 26vw, 220px);
+        border-radius: 999px;
+        background-color: var(--color-brand-green-600);
+        z-index: -1;
+        bottom: -2rem;
+    }
+
+    .event-media--right::after {
+        right: -1.75rem;
+    }
+
+    .event-media--left::after {
+        left: -1.75rem;
+    }
+
+    .event-image {
+        aspect-ratio: 16 / 8;
+        object-fit: cover;
+        border-radius: 3rem 0 3rem 0;
+        display: block;
+    }
+
+    @media (max-width: 991.98px) {
+        .event-image {
+            aspect-ratio: 16 / 10;
+        }
+    }
+</style>
