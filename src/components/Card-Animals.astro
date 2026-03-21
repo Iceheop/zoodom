@@ -31,11 +31,18 @@ const shapeStyle = `--animal-shape-color: ${shapeColor}; --animal-shape-mask: ur
         </a>
     </section>
     <span class="shape shape-mask position-absolute top-100 start-100 translate-middle" style={shapeStyle} aria-hidden="true"></span>
-    <img src={image} alt={imageAlt} class="img-fluid position-absolute bottom-0 end-0" height="300px">
+    <img src={image} alt={imageAlt} class="animal-image img-fluid position-absolute bottom-0 end-0">
 </article>
 <!-- End Animal Card -->
 
 <style>
+    .animal-image {
+        width: auto;
+        height: clamp(155px, 18vw, 235px);
+        object-fit: contain;
+        pointer-events: none;
+    }
+
     .shape-mask {
         background-color: var(--animal-shape-color);
         mask-image: var(--animal-shape-mask);
@@ -50,5 +57,11 @@ const shapeStyle = `--animal-shape-color: ${shapeColor}; --animal-shape-mask: ur
         aspect-ratio: 1068 / 1051;
         opacity: 0.9;
         pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+        .animal-image {
+            height: clamp(128px, 35vw, 188px);
+        }
     }
 </style>

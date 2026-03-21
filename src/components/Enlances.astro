@@ -1,0 +1,62 @@
+---
+import Section from "../layouts/Section.astro";
+import { enlaces } from "../data/enlaces";
+---
+
+<Section id="enlances">
+    <header class="text-center mb-5">
+            <h2 class="display-4 fw-bold text-primary m-0">Enlaces Importantes</h2>
+            <p class="text-primary m-0">Accesos institucionales.</p>
+    </header>
+
+    <section class="logos-shell py-5 my-5 overflow-hidden">
+        <section class="logos-track d-flex align-items-center" aria-label="Carrusel de logos patrocinadores">
+            <section class="d-flex align-items-center gap-4 pe-4" aria-hidden="false">
+                {enlaces.map((enlace) => (
+                    <a href={enlace.url} class="logo-item d-inline-flex align-items-center justify-content-center p-2" aria-label={enlace.title}>
+                        <img src={enlace.image} alt={enlace.imageAlt} class="sponsor-logo-image">
+                    </a>
+                ))}
+            </section>
+            <section class="d-flex align-items-center gap-4 pe-4" aria-hidden="true">
+                {enlaces.map((enlace) => (
+                    <a href={enlace.url} class="logo-item d-inline-flex align-items-center justify-content-center p-2" aria-label={enlace.title} tabindex="-1">
+                        <img src={enlace.image} alt="" class="sponsor-logo-image">
+                    </a>
+                ))}
+            </section>
+        </section>
+    </section>
+</Section>
+
+<style>
+    .logos-track {
+        width: max-content;
+        animation: logos-marquee 28s linear infinite;
+    }
+
+    .logos-track:hover {
+        animation-play-state: paused;
+    }
+
+    .logo-item {
+        width: clamp(150px, 20vw, 230px);
+        min-height: 96px;
+    }
+
+    .sponsor-logo-image {
+        max-width: 100%;
+        max-height: 80px;
+        object-fit: contain;
+        display: block;
+    }
+
+    @keyframes logos-marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .logos-track { animation: none; }
+    }
+</style>

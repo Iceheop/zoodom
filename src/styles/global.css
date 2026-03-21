@@ -113,6 +113,18 @@ a.active {
     background-position: center;
     background-attachment: fixed;
 }
+#footer {
+    background-image: url('../assets/backgrounds/texture.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.footer-logo {
+    width: auto;
+    height: 75px;
+    filter: brightness(0) saturate(100%) invert(1);
+}
 .navbar-toggler {
     border-color: var(--color-brand-green-800);
 }
