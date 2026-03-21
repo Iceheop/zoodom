@@ -1,0 +1,120 @@
+---
+import Section from "../layouts/Section.astro";
+import CardAnimals from "./Card-Animals.astro";
+import { animals } from "../data/animals";
+---
+<!-- Section Animals -->
+<Section id="animals">
+    <header class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mb-5">
+        <section>
+            <h2 class="display-4 fw-bold text-white m-0">Animales</h2>
+            <p class="text-white m-0">Descubre nuestra increíble variedad de animales en su hábitat natural.</p>
+        </section>
+        <section>
+            <a href="#">
+                <i class="text-white bi bi-arrow-right-short display-4"></i>
+            </a>
+        </section>
+    </header>
+    <!-- Content -->
+    <section class="animals-carousel-shell py-5 my-5">
+        <section class="animals-carousel d-flex align-items-stretch" id="animals-carousel-track" aria-label="Carrusel de animales">
+            {animals.map((animal) => (
+                <CardAnimals
+                    name={animal.name}
+                    scientificName={animal.scientificName}
+                    description={animal.description}
+                    image={animal.image}
+                    imageAlt={animal.imageAlt}
+                    shapeColor={animal.shapeColor}
+                    infoUrl={animal.infoUrl}
+                    detailsUrl={animal.detailsUrl}
+                />
+            ))}
+        </section>
+    </section>
+</Section>
+<!-- End Section Animals -->
+
+<script>
+    const track = document.getElementById("animals-carousel-track");
+
+    if (track && track.dataset.carouselReady !== "true") {
+        track.dataset.carouselReady = "true";
+
+        let autoScrollTimer: number | undefined;
+
+        const getScrollAmount = () => {
+            const firstCard = track.querySelector(".card");
+            if (!firstCard) return track.clientWidth * 0.9;
+            const cardWidth = firstCard.getBoundingClientRect().width;
+            return cardWidth + 24;
+        };
+
+        const moveNext = () => {
+            const maxScrollLeft = track.scrollWidth - track.clientWidth;
+            const isAtEnd = track.scrollLeft >= maxScrollLeft - 4;
+
+            if (isAtEnd) {
+                track.scrollTo({ left: 0, behavior: "smooth" });
+                return;
+            }
+
+            track.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+        };
+
+        const startAutoScroll = () => {
+            autoScrollTimer = window.setInterval(moveNext, 2800);
+        };
+
+        const stopAutoScroll = () => {
+            if (!autoScrollTimer) return;
+            window.clearInterval(autoScrollTimer);
+            autoScrollTimer = undefined;
+        };
+
+        const cards = track.querySelectorAll(".card");
+
+        cards.forEach((card) => {
+            card.addEventListener("mouseenter", stopAutoScroll);
+            card.addEventListener("mouseleave", startAutoScroll);
+        });
+
+        track.addEventListener("touchstart", stopAutoScroll, { passive: true });
+        track.addEventListener("touchend", startAutoScroll, { passive: true });
+
+        startAutoScroll();
+    }
+</script>
+
+<style>
+    .animals-carousel {
+        gap: 1.5rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .animals-carousel-shell {
+        position: relative;
+    }
+
+    .animals-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .animals-carousel :global(.card) {
+        flex: 0 0 min(88vw, 390px);
+        width: min(88vw, 390px);
+        scroll-snap-align: start;
+    }
+
+    @media (max-width: 768px) {
+        .animals-carousel :global(.card) {
+            flex-basis: 84vw;
+            width: 84vw;
+        }
+    }
+</style>

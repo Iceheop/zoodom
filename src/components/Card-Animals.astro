@@ -1,0 +1,54 @@
+---
+import Shape from "../assets/ui/shape.svg";
+import type { Animal } from "../data/animals";
+
+type CardAnimalProps = Omit<Animal, "id">;
+
+const {
+    name,
+    scientificName,
+    description,
+    image,
+    imageAlt,
+    shapeColor = "var(--color-extended-orange-100)",
+    infoUrl = "#",
+    detailsUrl = "#"
+} = Astro.props as CardAnimalProps;
+
+const shapeStyle = `--animal-shape-color: ${shapeColor}; --animal-shape-mask: url('${Shape.src}');`;
+---
+<!-- Animal Card -->
+<article class="card col-md-6 col-lg-4 bg-overlay p-5 rounded-3 text-white position-relative overflow-hidden">
+    <h2 class="fw-bold">{name}</h2>
+    <h3 class="fw-light">{scientificName}</h3>
+    <p class="text-white ">{description}</p>
+    <section class="mb-card d-flex gap-4">
+        <a href={infoUrl}>
+            <i class="text-white bi bi-info-circle-fill display-6"></i>
+        </a>
+        <a href={detailsUrl}>
+            <i class="text-white bi bi-plus-circle-fill display-6"></i>
+        </a>
+    </section>
+    <span class="shape shape-mask position-absolute top-100 start-100 translate-middle" style={shapeStyle} aria-hidden="true"></span>
+    <img src={image} alt={imageAlt} class="img-fluid position-absolute bottom-0 end-0" height="300px">
+</article>
+<!-- End Animal Card -->
+
+<style>
+    .shape-mask {
+        background-color: var(--animal-shape-color);
+        mask-image: var(--animal-shape-mask);
+        -webkit-mask-image: var(--animal-shape-mask);
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        mask-position: center;
+        -webkit-mask-position: center;
+        mask-size: contain;
+        -webkit-mask-size: contain;
+        width: 1000px;
+        aspect-ratio: 1068 / 1051;
+        opacity: 0.9;
+        pointer-events: none;
+    }
+</style>
