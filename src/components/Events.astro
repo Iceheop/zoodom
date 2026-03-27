@@ -35,45 +35,64 @@ const events = [
 
 <!-- Section Events -->
 <Section id="events">
-    <header class="d-flex justify-content-between align-items-start">
-        <section>
+    <header class="d-flex justify-content-between align-items-start mb-5 pb-5">
+        <div>
             <h2 class="display-4 fw-bold text-primary m-0">Eventos</h2>
             <p class="text-primary m-0">Descubre nuestros eventos locales</p>
-        </section>
-        <section>
-            <a href="#">
+        </div>
+        <div>
+            <a href="/blog" aria-label="Ver novedades de eventos en el blog">
                 <i class="text-primary bi bi-arrow-right-short display-4"></i>
             </a>
-        </section>
+        </div>
     </header>
 
-    <section class="row">
+    <div class="d-flex flex-column events-stack">
         {events.map((event) => (
-            <article class="row justify-content-between gy-4 gy-lg-5">
-                <section class={`col-12 col-lg-4 ${event.reverse ? "order-lg-2" : "order-lg-1"}`}>
+            <article class="row justify-content-between gy-4 gy-lg-5 event-item">
+                <div class={`col-12 col-lg-4 ${event.reverse ? "order-lg-2" : "order-lg-1"}`}>
                     <h3 class="display-6 fw-bold text-primary mb-3">{event.title}</h3>
                     <p class="text-primary mb-4 event-copy">{event.description}</p>
-                    <a href="#" class="btn btn-brand rounded-pill px-5 fw-semibold">Leer más</a>
-                </section>
-                <section class={`col-12 col-lg-8 position-relative ${event.reverse ? "order-lg-1" : "order-lg-2"}`}>
+                    <a href="/blog" class="btn btn-brand rounded-pill px-5 fw-semibold">Leer mas</a>
+                </div>
+                <div class={`col-12 col-lg-8 position-relative event-visual ${event.reverse ? "order-lg-1" : "order-lg-2"}`}>
                     <figure class={`event-media  m-0 ${event.reverse ? "event-media--left" : "event-media--right"}`}>
                         <img src={event.image} alt={event.imageAlt} class="img-fluid w-100 event-image position-relative z-2" loading="lazy" />
                     </figure>
-                        <img src={Vector.src} alt="Vector decorativo" class="img-fluid w-100 position-absolute top-50 start-50 translate-middle z-1 vector" loading="lazy" />
-                </section>
+                    <img
+                        src={Vector.src}
+                        alt="Vector decorativo"
+                        class="img-fluid position-absolute z-1 vector"
+                        loading="lazy"
+                    />
+                </div>
             </article>
         ))}
-    </section>
+    </div>
 </Section>
 
 <style>
-    article:hover .event-image {
+    .event-visual {
+        overflow: visible;
+    }
+
+    .events-stack {
+        gap: 6rem;
+    }
+
+    .event-item:hover .event-image {
         transform: scale(1.05);
         transition: transform 0.3s ease;
     }
+
     .vector {
-        width: 80%;
+        width: 78%;
         max-width: 500px;
+        opacity: 0.95;
+        pointer-events: none;
+        left: 50%;
+        bottom: -16%;
+        transform: translateX(-50%);
     }
     .event-media {
         position: relative;
@@ -88,12 +107,19 @@ const events = [
     }
 
     @media (max-width: 991.98px) {
+        .events-stack {
+            gap: 3.5rem;
+        }
+
         .event-image {
             aspect-ratio: 16 / 10;
         }
         .vector {
-            width: 100%;
+            width: 75%;
             max-width: 210px;
+            bottom: -8%;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 </style>

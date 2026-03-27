@@ -65,6 +65,8 @@ html, body {
     font-family: 'Onest', sans-serif;
     background-color: var(--color-neutral-white-900);
     color: var(--color-neutral-black-900);
+    width: 100%;
+    overflow-x: hidden;
 }
 .logo {
     width: 110px;
@@ -137,11 +139,6 @@ a.active {
 .shape {
     width: 1000px;
     height: auto;
-}
-.card {
-    width: 375px;
-    border-radius: 75px 0 75px 0 !important;
-    border: none !important;
 }
 .text-primary {
     color: var(--color-brand-green-800) !important;

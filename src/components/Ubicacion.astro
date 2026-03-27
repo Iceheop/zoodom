@@ -1,0 +1,71 @@
+---
+import Section from "../layouts/Section.astro";
+---
+
+<Section id="ubicacion">
+    <div class="mb-5 pb-1 text-center">
+        <h2 class="display-4 fw-bold text-primary mb-4">Ubicación</h2>
+        <p class="fs-5 text-muted mb-5">
+            Visítanos en nuestras instalaciones ubicadas en el corazón de la capital. 
+            Estamos convenientemente ubicados para que disfrutes de una experiencia inolvidable 
+            con tu familia y amigos.
+        </p>
+    </div>
+
+    <!-- Información en una fila -->
+    <div class="row mb-5">
+        <div class="col-md-4 mb-3 mb-md-0">
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-geo-alt-fill text-primary fs-1 me-3" style="font-size: 1.5rem; flex-shrink: 0;"></i>
+                <div class="text-center">
+                    <h5 class="fw-bold text-dark">Dirección</h5>
+                    <p class="text-muted mb-0">Av. de los Proceres, Arroyo Hondo, Santo Domingo, Republica Dominicana</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-telephone-fill text-primary fs-1 me-3" style="font-size: 1.5rem; flex-shrink: 0;"></i>
+                <div class="text-center">
+                    <h5 class="fw-bold text-dark">Teléfono</h5>
+                    <p class="text-muted mb-0">+1 (809) XXX-XXXX</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-clock-fill text-primary fs-1 me-3" style="font-size: 1.5rem; flex-shrink: 0;"></i>
+                <div class="text-center">
+                    <h5 class="fw-bold text-dark">Horarios</h5>
+                    <p class="text-muted mb-0">Lunes - Domingo: 9:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mapa en grande -->
+    <div class="row">
+        <div class="col-12">
+            <div class="ratio ratio-16x9" style="border-radius: 75px 0 75px 0 !important; overflow: hidden;">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Parque%20Zoologico%20Nacional%20Arq.%20Manuel%20Valverde%20Podesta%2C%20Santo%20Domingo&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    style="border: none;"
+                    title="Ubicacion de ZOODOM"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</Section>
+
+<style>
+    #ubicacion {
+        padding: 80px 0;
+    }
+
+    .ratio {
+        border-radius: 75px 0 75px 0 !important;
+    }
+</style>

@@ -2,86 +2,211 @@
 import Section from "../layouts/Section.astro";
 import CardAnimals from "./Card-Animals.astro";
 import { animals } from "../data/animals";
+
+const desktopCarouselId = "animalsCarouselDesktop";
+const mobileCarouselId = "animalsCarouselMobile";
+const desktopSlideSize = 3;
+const desktopSlides = Array.from({ length: Math.ceil(animals.length / desktopSlideSize) }, (_, index) =>
+    animals.slice(index * desktopSlideSize, index * desktopSlideSize + desktopSlideSize)
+);
 ---
 <!-- Section Animals -->
 <Section id="animals">
-    <header class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mb-5">
-        <section>
-            <h2 class="display-4 fw-bold text-white m-0">Animales</h2>
-            <p class="text-white m-0">Descubre nuestra increíble variedad de animales en su hábitat natural.</p>
-        </section>
-        <section>
-            <a href="#">
-                <i class="text-white bi bi-arrow-right-short display-4"></i>
-            </a>
-        </section>
+    <header class="mb-5 text-center">
+        <h2 class="display-4 fw-bold text-white m-0">Aprende sobre nuestros animales</h2>
+        <p class="text-white m-0">Descubre nuestra increible variedad de animales en su habitat natural.</p>
     </header>
     <!-- Content -->
-    <section class="animals-carousel-shell py-5 my-5 overflow-hidden">
-        <section class="animals-track d-flex align-items-stretch" aria-label="Carrusel de animales">
-            <section class="d-flex align-items-stretch gap-4 pe-4" aria-hidden="false">
-                {animals.map((animal) => (
-                    <CardAnimals
-                        name={animal.name}
-                        scientificName={animal.scientificName}
-                        description={animal.description}
-                        image={animal.image}
-                        imageAlt={animal.imageAlt}
-                        shapeColor={animal.shapeColor}
-                        infoUrl={animal.infoUrl}
-                        detailsUrl={animal.detailsUrl}
-                    />
+    <div class="animals-carousel-shell py-5 my-5">
+        <div
+            id={desktopCarouselId}
+            class="carousel slide animals-carousel d-none d-md-block"
+            data-bs-ride="carousel"
+            data-bs-interval="4500"
+            data-bs-pause="hover"
+            aria-label="Carrusel de animales"
+        >
+            <div class="carousel-inner">
+                {desktopSlides.map((slideAnimals, index) => (
+                    <article class={`carousel-item ${index === 0 ? "active" : ""}`} aria-label={`Grupo de animales ${index + 1}`}>
+                        <div class="slide-wrap row gx-4 gy-4 justify-content-center">
+                            {slideAnimals.map((animal) => (
+                                <div class="col-md-4 d-flex justify-content-center">
+                                    <CardAnimals
+                                        name={animal.name}
+                                        scientificName={animal.scientificName}
+                                        description={animal.description}
+                                        image={animal.image}
+                                        imageAlt={animal.imageAlt}
+                                        shapeColor={animal.shapeColor}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </article>
                 ))}
-            </section>
-            <section class="d-flex align-items-stretch gap-4 pe-4" aria-hidden="true" inert>
-                {animals.map((animal) => (
-                    <CardAnimals
-                        name={animal.name}
-                        scientificName={animal.scientificName}
-                        description={animal.description}
-                        image={animal.image}
-                        imageAlt={animal.imageAlt}
-                        shapeColor={animal.shapeColor}
-                        infoUrl={animal.infoUrl}
-                        detailsUrl={animal.detailsUrl}
-                    />
+            </div>
+
+            <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target={`#${desktopCarouselId}`}
+                data-bs-slide="prev"
+                aria-label="Animal anterior"
+            >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target={`#${desktopCarouselId}`}
+                data-bs-slide="next"
+                aria-label="Siguiente animal"
+            >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div
+            id={mobileCarouselId}
+            class="carousel slide animals-carousel animals-carousel-mobile d-md-none"
+            data-bs-ride="carousel"
+            data-bs-interval="4500"
+            data-bs-pause="hover"
+            data-bs-touch="true"
+            data-bs-wrap="true"
+            aria-label="Carrusel de animales móvil"
+        >
+            <div class="carousel-inner">
+                {animals.map((animal, index) => (
+                    <article class={`carousel-item ${index === 0 ? "active" : ""}`} aria-label={`Animal ${animal.name}`}>
+                        <div class="slide-wrap row justify-content-center">
+                            <div class="col-12 d-flex justify-content-center">
+                                <CardAnimals
+                                    name={animal.name}
+                                    scientificName={animal.scientificName}
+                                    description={animal.description}
+                                    image={animal.image}
+                                    imageAlt={animal.imageAlt}
+                                    shapeColor={animal.shapeColor}
+                                />
+                            </div>
+                        </div>
+                    </article>
                 ))}
-            </section>
-        </section>
-    </section>
+            </div>
+        </div>
+    </div>
 </Section>
 <!-- End Section Animals -->
 
 <style>
-    .animals-track {
-        width: max-content;
-        animation: animals-marquee 38s linear infinite;
+    .animals-carousel-shell {
+        position: relative;
     }
 
-    .animals-track:hover {
-        animation-play-state: paused;
+    .animals-carousel .carousel-inner {
+        overflow: visible;
+        padding-left: 5.5rem;
+        padding-right: 5.5rem;
     }
 
-    .animals-track :global(.card) {
-        flex: 0 0 min(88vw, 390px);
-        width: min(88vw, 390px);
+    .animals-carousel-mobile .carousel-inner {
+        overflow: hidden;
     }
 
-    @keyframes animals-marquee {
-        from { transform: translateX(0); }
-        to { transform: translateX(-50%); }
+    .animals-carousel-mobile {
+        touch-action: pan-y;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        .animals-track {
-            animation: none;
-        }
+    .animals-carousel .slide-wrap {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .animals-carousel .slide-wrap :global(.card) {
+        width: 100%;
+        max-width: 320px;
+        min-height: 100%;
+    }
+
+    .animals-carousel :global(.carousel-control-prev),
+    .animals-carousel :global(.carousel-control-next) {
+        width: 3.2rem;
+        height: 3.2rem;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.35);
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.95;
+    }
+
+    .animals-carousel :global(.carousel-control-prev) {
+        left: -1.25rem;
+    }
+
+    .animals-carousel :global(.carousel-control-next) {
+        right: -1.25rem;
+    }
+
+    .animals-carousel :global(.carousel-control-prev-icon),
+    .animals-carousel :global(.carousel-control-next-icon) {
+        width: 1.35rem;
+        height: 1.35rem;
     }
 
     @media (max-width: 768px) {
-        .animals-track :global(.card) {
-            flex-basis: 84vw;
-            width: 84vw;
+        .animals-carousel-shell {
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+        }
+
+        .animals-carousel .carousel-inner {
+            padding-left: 2.45rem;
+            padding-right: 2.45rem;
+        }
+
+        .animals-carousel-mobile .carousel-inner {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .animals-carousel-mobile .carousel-item {
+            padding-left: 0.55rem;
+            padding-right: 0.55rem;
+        }
+
+        .animals-carousel-mobile .slide-wrap {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .animals-carousel-mobile .slide-wrap > .col-12 {
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+        }
+
+        .animals-carousel .slide-wrap :global(.card) {
+            max-width: 88vw;
+        }
+
+        .animals-carousel-mobile .slide-wrap :global(.card) {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .animals-carousel :global(.carousel-control-prev),
+        .animals-carousel :global(.carousel-control-next) {
+            width: 2.8rem;
+            height: 2.8rem;
+        }
+
+        .animals-carousel :global(.carousel-control-prev) {
+            left: -0.7rem;
+        }
+
+        .animals-carousel :global(.carousel-control-next) {
+            right: -0.7rem;
         }
     }
 </style>

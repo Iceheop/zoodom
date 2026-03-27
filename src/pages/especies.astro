@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../layouts/Section.astro';
+import Nav from '../components/Nav.astro';
+import PageIntro from '../components/PageIntro.astro';
+import CardAnimals from '../components/Card-Animals.astro';
+import { animals } from '../data/animals';
+import Footer from '../components/Footer.astro';
+---
+<Layout>
+    <Nav />
+    <Section>
+        <PageIntro
+            title="Nuestras especies"
+            description="Conoce todos los animales que puedes encontrar en ZOODOM."
+        />
+
+        <div class="row g-4 justify-content-center">
+            {animals.map((animal) => (
+                <article class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+                    <CardAnimals
+                        name={animal.name}
+                        scientificName={animal.scientificName}
+                        description={animal.description}
+                        image={animal.image}
+                        imageAlt={animal.imageAlt}
+                        shapeColor={animal.shapeColor}
+                        variant="light-surface"
+                    />
+                </article>
+            ))}
+        </div>
+    </Section>
+    <Footer />
+</Layout>

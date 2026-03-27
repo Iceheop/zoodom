@@ -1,6 +1,5 @@
 ---
 import logo from "../assets/ui/logo.svg";
-import textureBg from "../assets/backgrounds/texture.webp";
 
 const footerColumns = [
     {
@@ -19,8 +18,8 @@ const footerColumns = [
 ---
 <!-- Footer -->
 <footer id="footer" class="py-4 text-white">
-    <section class="container px-3 px-lg-5 py-5 py-lg-6">
-        <section class="row gy-5 gx-lg-5 gx-xl-6 justify-content-between">
+    <div class="container px-3 px-lg-5 py-5 py-lg-6">
+        <div class="row gy-5 gx-lg-5 gx-xl-6 justify-content-between">
             {footerColumns.map((column) => (
                 <article class="col-12 col-md-6 col-lg-2">
                     <h4 class="footer-title mb-3">{column.title}</h4>
@@ -38,11 +37,11 @@ const footerColumns = [
                     experiencias educativas y actividades que conectan a las familias con la naturaleza.
                 </p>
             </article>
-        </section>
-        <section class="d-flex flex-column flex-lg-row align-items-start align-items-lg-end justify-content-between gap-3 mt-5 mt-lg-6 pt-5">
+        </div>
+        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-end justify-content-between gap-3 mt-5 mt-lg-6 pt-5">
             <img src={logo.src} alt="Logo ZOODOM" class="footer-logo" />
-            <p class="text-white m-0">Copyright © Disenado y desarrollado por Ronald Santana 2025</p>
-        </section>
-    </section>
+            <small class="text-white m-0">Copyright © Disenado y desarrollado por Ronald Santana 2025</small>
+        </div>
+    </div>
 </footer>
 <!-- End Footer -->

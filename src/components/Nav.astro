@@ -2,9 +2,9 @@
 import logo from '../assets/ui/logo.svg';
 ---
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light">
-    <section class="container px-3 px-lg-5 py-3">
-        <a class="navbar-brand me-0" href="#">
+<nav class="navbar navbar-expand-lg navbar-light fade-in-up">
+    <div class="container px-3 px-lg-5 py-3">
+        <a class="navbar-brand me-0" href="/" aria-label="Ir al inicio">
             <!-- Móvil -->
             <img src={logo.src} class="img-fluid d-inline d-sm-none" width="80" alt="Logo"/>
             <!-- Tablet/Desktop -->
@@ -13,15 +13,15 @@ import logo from '../assets/ui/logo.svg';
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <section class="collapse navbar-collapse" id="mainNavbar">
+        <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0 gap-lg-4 pt-3 pt-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Especies</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Galeria</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="./especies">Especies</a></li>
+                <li class="nav-item"><a class="nav-link" href="./galeria">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="./blog">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="./contacto">Contacto</a></li>
             </ul>
-        </section>
-    </section>
+        </div>
+    </div>
 </nav>
 <!-- End Navigation -->

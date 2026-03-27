@@ -7,33 +7,48 @@ import Enlances from '../components/Enlances.astro';
 import Gallery from '../components/Gallery.astro';
 import Events from '../components/Events.astro';
 import CallToAction from '../components/CallToAction.astro';
+import Ubicacion from '../components/Ubicacion.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { blogPosts } from '../data/blogPosts';
+import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-	<div class="fade-in-up">
 		<Nav />
-	</div>
-	<div class="fade-in-up">
 		<Header />
-	</div>
-	<div class="fade-in-up">
 		<Animals />
-	</div>
-	<div class="fade-in-up">
 		<Gallery />
-	</div>
-	<div class="fade-in-up">
 		<Events />
-	</div>
-	<div class="fade-in-up">
 		<CallToAction />
-	</div>
-	<div class="fade-in-up">
 		<Enlances />
-	</div>
-	<div class="fade-in-up">
+		<section class="container px-3 px-lg-5 py-5">
+			<header class="text-center mb-5">
+				<h2 class="display-5 fw-bold text-primary m-0">Ultimas publicaciones</h2>
+				<p class="m-0">Novedades de conservacion, educacion y experiencias en ZOODOM.</p>
+			</header>
+			<section class="row g-4">
+				{blogPosts.slice(0, 3).map((post) => (
+					<article class="col-12 col-md-6 col-lg-4">
+						<BlogCard
+							title={post.title}
+							date={post.date}
+							category={post.category}
+							excerpt={post.excerpt}
+							image={post.image}
+							imageAlt={post.imageAlt}
+							readTime={post.readTime}
+							href={post.href}
+						/>
+					</article>
+				))}
+			</section>
+			<section class="text-center mt-4">
+				<a href="/blog" class="btn btn-brand rounded-pill px-4 py-2">Ver todo el blog</a>
+			</section>
+		</section>
+		<Ubicacion />
+		<FAQ />
 		<Footer />
-	</div>
 </Layout>
 

@@ -1,0 +1,95 @@
+---
+import Section from "../layouts/Section.astro";
+
+const faqs = [
+    {
+        question: "¿Quiénes somos?",
+        answer: "Somos un zoológico dedicado a la conservación, educación y entretenimiento. Nuestro objetivo es proporcionar experiencias inolvidables mientras promovemos la protección de la vida silvestre."
+    },
+    {
+        question: "¿Qué hacemos?",
+        answer: "Alojamos y cuidamos una variedad de animales de todo el mundo. Ofrecemos tours educativos, eventos especiales y programas de conservación para familias y grupos."
+    },
+    {
+        question: "¿Dónde puedo conseguir información?",
+        answer: "Puedes contactarnos a través de nuestro sitio web, llamar a nuestro teléfono principal, o visitarnos directamente. También tenemos redes sociales donde compartimos contenido diariamente."
+    },
+    {
+        question: "¿Beneficios frecuentes?",
+        answer: "Los visitantes frecuentes disfrutan de descuentos especiales, acceso prioritario a eventos, y membresía exclusiva con beneficios adicionales durante todo el año."
+    }
+];
+---
+
+<Section id="faq">
+    <header class="text-center mb-5">
+        <h2 class="display-3 fw-bold text-primary mb-3">Preguntas frecuentes</h2>
+        <p class="fs-5 lead text-muted">Encuentra respuestas a las preguntas más comunes sobre tu visita al zoológico</p>
+    </header>
+
+    <div class="accordion" id="faqAccordion" aria-label="Preguntas frecuentes sobre ZOODOM">
+        {faqs.map((faq, index) => (
+            <div class="accordion-item border-0 mb-3">
+                <h3 class="accordion-header">
+                    <button
+                        id={`faq-button-${index}`}
+                        class="accordion-button collapsed fw-bold rounded-accordion fs-5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#faq-${index}`}
+                        aria-expanded="false"
+                        aria-controls={`faq-${index}`}
+                    >
+                        {faq.question}
+                    </button>
+                </h3>
+                <div
+                    id={`faq-${index}`}
+                    class="accordion-collapse collapse"
+                    aria-labelledby={`faq-button-${index}`}
+                    data-bs-parent="#faqAccordion"
+                >
+                    <div class="accordion-body bg-light rounded-bottom-accordion fs-5">
+                        {faq.answer}
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</Section>
+
+<style>
+    .accordion-button {
+        background-color: var(--color-brand-green-800);
+        color: white;
+        border-radius: 35px 0 35px 0 !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: var(--color-brand-green-700);
+        color: white;
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: var(--color-brand-green-800);
+        background-color: var(--color-brand-green-800);
+    }
+
+    .accordion-button::after {
+        filter: invert(1);
+    }
+
+    .rounded-accordion {
+        border-radius: 35px 0 35px 0 !important;
+    }
+
+    .rounded-bottom-accordion {
+        border-radius: 0 0 35px 0 !important;
+    }
+
+    .accordion-item {
+        background-color: transparent;
+        border: none !important;
+    }
+</style>

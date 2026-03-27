@@ -2,18 +2,18 @@
 import HeroImg from '../assets/images/hero.webp';
 ---
 <!-- Header -->
-<header class="position-relative py-md-5 py-lg-5" style="min-height: 600px;">
-    <section class="container px-3 px-lg-5 pb-lg-5 py-lg-3 my-5">
-        <section class="row d-flex justify-content-between align-items-center position-relative h-100">
-            <section class="col-lg-6 col-md-6 col-12">
-                <h1 class="display-1 fw-bold">Bienvenido a nuestro zoológico</h1>
-                <p>Planea una salida en familia a nuestro parque zoológico nacional para que te sientas en una experiencia inolvidable.</p>
-                <button class="btn btn-brand px-5 py-2 rounded-pill">Reservar ahora</button>
-            </section>
-            <section class="col-lg-6 col-md-6 col-12 d-none d-md-block">
-                <img src={HeroImg.src} class="img-fluid hero-img w-100 position-absolute bottom-0 end-0" alt="Hero Image" loading="eager">
-            </section>
-        </section>
-    </section>
+<header class="position-relative py-md-5 py-lg-5 fade-in-up" id="hero">
+    <div class="container px-3 px-lg-5 pb-lg-5 py-lg-3 my-5">
+        <div class="row d-flex justify-content-between align-items-center position-relative h-100">
+            <div class="col-lg-6 col-md-6 col-12">
+                <h1 class="display-1 fw-bold">Bienvenido a nuestro zoologico</h1>
+                <p>Planea una salida en familia a nuestro parque zoologico nacional para vivir una experiencia inolvidable.</p>
+                <a href="/contacto" class="btn btn-brand px-5 py-2 rounded-pill">Reservar ahora</a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 d-none d-md-block" aria-hidden="true">
+                <img src={HeroImg.src} class="img-fluid hero-img w-100 position-absolute bottom-0 end-0" alt="Familia visitando el zoologico" loading="eager">
+            </div>
+        </div>
+    </div>
 </header>
 <!-- End Header -->

@@ -1,0 +1,29 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+    titleClass?: string;
+    centered?: boolean;
+}
+
+const {
+    title,
+    description = "",
+    titleClass = "display-4 fw-bold text-primary",
+    centered = true
+} = Astro.props as Props;
+---
+
+<header class={`page-intro mb-5 ${centered ? "text-center" : ""}`}>
+    <h1 class={titleClass}>{title}</h1>
+    {description && (
+        <p class="page-intro-description mx-auto">{description}</p>
+    )}
+</header>
+
+<style>
+    .page-intro-description {
+        max-width: 760px;
+        margin-top: 0;
+    }
+</style>

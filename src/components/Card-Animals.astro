@@ -1,8 +1,15 @@
 ---
 import Shape from "../assets/ui/shape.svg";
-import type { Animal } from "../data/animals";
 
-type CardAnimalProps = Omit<Animal, "id">;
+type CardAnimalProps = {
+    name: string;
+    scientificName: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    shapeColor?: string;
+    variant?: "default" | "light-surface";
+};
 
 const {
     name,
@@ -11,34 +18,134 @@ const {
     image,
     imageAlt,
     shapeColor = "var(--color-extended-orange-100)",
-    infoUrl = "#",
-    detailsUrl = "#"
+    variant = "default"
 } = Astro.props as CardAnimalProps;
 
-const shapeStyle = `--animal-shape-color: ${shapeColor}; --animal-shape-mask: url('${Shape.src}');`;
+const getDarkBackgroundFromShape = (color: string): string => {
+    if (color.includes("neutral-white")) return "var(--color-neutral-black-900)";
+
+    const tokenMatch = color.match(/^var\(--([^)]+)\)$/);
+    if (!tokenMatch) return "var(--color-neutral-black-900)";
+
+    const baseToken = tokenMatch[1];
+    const darkToken = baseToken.replace(/-\d+$/, "-900");
+    return `var(--${darkToken})`;
+};
+
+const isLightSurface = variant === "light-surface";
+const cardBackground = isLightSurface ? getDarkBackgroundFromShape(shapeColor) : "var(--color-neutral-overlay-900)";
+const modalBackground = isLightSurface ? cardBackground : "rgba(0, 0, 0, 0.92)";
+const shapeFillColor = isLightSurface ? "var(--color-neutral-white-900)" : shapeColor;
+const shapeOpacity = isLightSurface ? "0.22" : "0.9";
+const modalId = `animal-modal-${name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+const modalTitleId = `${modalId}-title`;
+
+const shapeStyle = `--animal-shape-color: ${shapeFillColor}; --animal-shape-mask: url('${Shape.src}'); --animal-card-bg: ${cardBackground}; --animal-modal-bg: ${modalBackground}; --animal-shape-opacity: ${shapeOpacity};`;
 ---
 <!-- Animal Card -->
-<article class="card col-md-6 col-lg-4 bg-overlay p-5 rounded-3 text-white position-relative overflow-hidden">
-    <h2 class="fw-bold">{name}</h2>
-    <h3 class="fw-light">{scientificName}</h3>
+<article class="card animal-card p-5 text-white position-relative overflow-hidden" style={shapeStyle}>
+    <header class="mb-2">
+        <h2 class="fw-bold fs-3 mb-1">{name}</h2>
+        <p class="fw-light fs-4 mb-0">{scientificName}</p>
+    </header>
     <p class="text-white ">{description}</p>
-    <section class="mb-card d-flex gap-4">
-        <a href={infoUrl}>
+    <div class="mb-card d-flex gap-4">
+        <button
+            type="button"
+            class="animal-info-btn"
+            data-bs-toggle="modal"
+            data-bs-target={`#${modalId}`}
+            aria-label={`Mas informacion sobre ${name}`}
+        >
             <i class="text-white bi bi-info-circle-fill display-6"></i>
-        </a>
-        <a href={detailsUrl}>
-            <i class="text-white bi bi-plus-circle-fill display-6"></i>
-        </a>
-    </section>
-    <span class="shape shape-mask position-absolute top-100 start-100 translate-middle" style={shapeStyle} aria-hidden="true"></span>
+        </button>
+    </div>
+    <span class="shape shape-mask position-absolute top-100 start-100 translate-middle" aria-hidden="true"></span>
     <img src={image} alt={imageAlt} class="animal-image img-fluid position-absolute bottom-0 end-0">
 </article>
 <!-- End Animal Card -->
 
+<!-- Animal Modal -->
+<div class="modal fade" id={modalId} tabindex="-1" role="dialog" aria-modal="true" aria-labelledby={modalTitleId} aria-hidden="true" data-animal-modal="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content animal-modal-content text-white overflow-hidden" style={shapeStyle}>
+            <button
+                type="button"
+                class="btn-close btn-close-white animal-modal-close"
+                data-bs-dismiss="modal"
+                aria-label="Cerrar"
+            ></button>
+            <div class="modal-body p-0">
+                <section class="row g-0 align-items-stretch">
+                    <section class="col-12 col-md-5 animal-modal-visual position-relative">
+                        <span class="shape shape-mask animal-modal-shape position-absolute top-100 start-100 translate-middle" aria-hidden="true"></span>
+                        <img src={image} alt={imageAlt} class="animal-modal-image img-fluid position-absolute bottom-0 end-0" />
+                    </section>
+                    <section class="col-12 col-md-7 p-4 p-md-5">
+                        <h3 class="fw-bold mb-1 text-white" id={modalTitleId}>{name}</h3>
+                        <p class="fst-italic mb-4 text-white-50">{scientificName}</p>
+                        <p class="mb-3 text-white">{description}</p>
+                        <p class="mb-3 text-white">
+                            En ZOODOM trabajamos en conservacion, educacion y bienestar animal. Durante tu visita,
+                            puedes encontrar mas datos de esta especie en nuestras estaciones informativas.
+                        </p>
+                        <p class="mb-3 text-white">
+                            Esta especie cumple un rol importante dentro de su ecosistema, ayudando al equilibrio
+                            natural y a la biodiversidad de su habitat.
+                        </p>
+                        <ul class="animal-modal-list mb-0 text-white">
+                            <li><strong>Habitat:</strong> Zonas adaptadas para su bienestar y comportamiento natural.</li>
+                            <li><strong>Alimentacion:</strong> Dieta controlada por especialistas en nutricion animal.</li>
+                            <li><strong>Conservacion:</strong> Programas de educacion y proteccion de especies.</li>
+                            <li><strong>Dato curioso:</strong> Cada animal tiene rutinas de enriquecimiento ambiental diario.</li>
+                        </ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    if (!(window as any).__animalModalsBound) {
+        (window as any).__animalModalsBound = true;
+
+        const moveModalsToBody = () => {
+            document.querySelectorAll('[data-animal-modal="true"]').forEach((modal) => {
+                if (modal.parentElement !== document.body) {
+                    document.body.appendChild(modal);
+                }
+            });
+        };
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", moveModalsToBody);
+        } else {
+            moveModalsToBody();
+        }
+    }
+</script>
+
 <style>
+    .animal-card {
+        border-radius: 75px 0 75px 0 !important;
+        height: 590px;
+        background-color: var(--animal-card-bg) !important;
+    }
+
+    .animal-card header p {
+        margin: 0;
+        color: var(--color-neutral-white-900);
+    }
+
     .animal-image {
         width: auto;
-        height: clamp(155px, 18vw, 235px);
+        height: clamp(100px, 18vw, 200px);
         object-fit: contain;
         pointer-events: none;
     }
@@ -53,15 +160,106 @@ const shapeStyle = `--animal-shape-color: ${shapeColor}; --animal-shape-mask: ur
         -webkit-mask-position: center;
         mask-size: contain;
         -webkit-mask-size: contain;
-        width: 1000px;
+        width: 725px;
         aspect-ratio: 1068 / 1051;
-        opacity: 0.9;
+        opacity: var(--animal-shape-opacity);
         pointer-events: none;
     }
 
+    .animal-info-btn {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        line-height: 1;
+    }
+
+    .animal-info-btn:focus-visible {
+        outline: 2px solid var(--color-neutral-white-900);
+        outline-offset: 4px;
+        border-radius: 999px;
+    }
+
+    .animal-modal-content {
+        border: 0;
+        border-radius: 75px 0 75px 0;
+        background-color: var(--animal-modal-bg) !important;
+    }
+
+    .animal-modal-content h3,
+    .animal-modal-content p,
+    .animal-modal-content li {
+        color: var(--color-neutral-white-900) !important;
+    }
+
+    .animal-modal-list {
+        padding-left: 1.1rem;
+    }
+
+    .animal-modal-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    .animal-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 5;
+    }
+
+    .animal-modal-visual {
+        min-height: 280px;
+        background: rgba(255, 255, 255, 0.06);
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+    }
+
+    .animal-modal-shape {
+        width: 725px;
+        aspect-ratio: 1068 / 1051;
+        z-index: 0;
+    }
+
+    .animal-modal-image {
+        width: auto;
+        height: clamp(100px, 18vw, 220px);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    @media (min-width: 992px) {
+        .animal-modal-visual {
+            min-height: 340px;
+        }
+
+        .animal-modal-shape {
+            width: 820px;
+        }
+
+        .animal-modal-image {
+            height: clamp(150px, 22vw, 300px);
+        }
+    }
+
     @media (max-width: 768px) {
+        .animal-card {
+            height: 500px;
+        }
+
         .animal-image {
             height: clamp(128px, 35vw, 188px);
+        }
+        .shape-mask {
+            height: clamp(550px, 100vw, 500px);
+        }
+
+        .animal-modal-image {
+            height: clamp(128px, 35vw, 188px);
+        }
+
+        .animal-modal-visual {
+            min-height: 220px;
+            border-right: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
     }
 </style>

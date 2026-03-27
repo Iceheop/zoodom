@@ -2,7 +2,7 @@
 import ctaBgImg from "../assets/images/gallery-familia-zoodom.webp";
 ---
 
-<section id="cta" class="py-5">
+<section id="cta" class="py-5 fade-in-up">
     <article class="position-relative overflow-hidden text-white d-flex align-items-center justify-content-center text-center px-3 py-5" style="min-height: 500px; isolation: isolate;">
         <img
             src={ctaBgImg.src}
@@ -10,12 +10,12 @@ import ctaBgImg from "../assets/images/gallery-familia-zoodom.webp";
             class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-0"
             loading="lazy"
         />
-        <section class="position-absolute top-0 start-0 w-100 h-100 opacity-50 z-1" style="background-color: var(--color-neutral-black-900);"></section>
+        <div class="position-absolute top-0 start-0 w-100 h-100 opacity-50 z-1" style="background-color: var(--color-neutral-black-900);"></div>
 
-        <section class="position-relative z-2 w-100 mx-auto">
+        <div class="position-relative z-2 w-100 mx-auto">
             <h2 class="fw-bold mb-2 display-6">Haz una visita a nuestra casa natural</h2>
             <p class="mb-4 text-white">Vive una experiencia inolvidable entre especies increibles y actividades para toda la familia.</p>
-            <a href="#" class="btn btn-light rounded-pill px-5 fw-semibold">Planifica</a>
-        </section>
+            <a href="/contacto" class="btn btn-light rounded-pill px-5 fw-semibold">Planifica</a>
+        </div>
     </article>
 </section>

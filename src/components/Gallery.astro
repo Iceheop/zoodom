@@ -1,6 +1,5 @@
 ---
 import Section from "../layouts/Section.astro";
-import familiaZoodomImg from "../assets/images/gallery-familia-zoodom.webp";
 import patoEntreHojasImg from "../assets/images/gallery-pato-entre-hojas.webp";
 import flamencosImg from "../assets/images/gallery-flamencos.webp";
 import cisneNegroImg from "../assets/images/gallery-cisne-negro.webp";
@@ -9,7 +8,6 @@ import hipopotamoImg from "../assets/images/gallery-hipopotamo.webp";
 import tortugaAguaImg from "../assets/images/gallery-tortuga-agua.webp";
 import bisontesImg from "../assets/images/gallery-bisontes.webp";
 import antilopeImg from "../assets/images/gallery-antilope.webp";
-import caminoSafariImg from "../assets/images/gallery-camino-safari.webp";
 
 const galleryImages = [
     /* { src: familiaZoodomImg.src, alt: "Familia visitando el zoologico" }, */
@@ -28,19 +26,19 @@ const galleryImages = [
 <!-- Section Gallery -->
 <Section id="gallery">
     <header class="d-flex justify-content-between">
-        <section>
+        <div>
             <h2 class="display-4 fw-bold text-primary m-0">Galería</h2>
             <p class="text-primary m-0">Explora nuestra colección de imágenes del zoológico.</p>
-        </section>
-        <section>
-            <a href="#">
+        </div>
+        <div>
+            <a href="/galeria" aria-label="Ir a la pagina de galeria">
                 <i class="text-primary bi bi-arrow-right-short display-4"></i>
             </a>
-        </section>
+        </div>
     </header>
-    <section class="gallery-mosaic mt-5 pt-3">
+    <div class="gallery-mosaic mt-5 pt-3" role="list" aria-label="Galeria de imagenes">
         {galleryImages.map((image, index) => (
-            <article class={`mosaic-item item-${index + 1}`}>
+            <article class={`mosaic-item item-${index + 1}`} role="listitem">
                 <button
                     type="button"
                     class="gallery-trigger"
@@ -58,34 +56,35 @@ const galleryImages = [
                 </button>
             </article>
         ))}
-    </section>
-    <section class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
-        <section class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <section class="modal-content bg-transparent border-0">
-                <section class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </section>
-                <section class="modal-body pt-0">
-                    <img id="galleryModalImage" src="" alt="Imagen ampliada de galeria" class="img-fluid w-100 rounded-4" />
-                </section>
-            </section>
-        </section>
-    </section>
+    </div>
 </Section>
 
+<!-- Gallery Modal -->
+<div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-modal="true" aria-label="Visor de imagenes de la galeria">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0 position-relative">
+            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0" data-bs-dismiss="modal" aria-label="Cerrar visor" style="z-index: 10; background: rgba(0,0,0,0.5); padding: 8px; border-radius: 50%;"></button>
+            <div class="modal-body p-0">
+                <img id="galleryModalImage" src="" alt="Imagen ampliada" class="img-fluid w-100 rounded-3">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    const galleryModal = document.getElementById("galleryModal");
-    const galleryModalImage = document.getElementById("galleryModalImage") as HTMLImageElement | null;
-
-    galleryModal?.addEventListener("show.bs.modal", (event) => {
-        const trigger = (event as any).relatedTarget as HTMLElement | null;
-        if (!trigger || !galleryModalImage) return;
-
-        const imageSrc = trigger.dataset.imageSrc || "";
-        const imageAlt = trigger.dataset.imageAlt || "Imagen ampliada de galeria";
-
-        galleryModalImage.src = imageSrc;
-        galleryModalImage.alt = imageAlt;
+    document.addEventListener("shown.bs.modal", function (event) {
+        const target = event.target as HTMLElement | null;
+        if (target?.id === "galleryModal") {
+            const relatedTarget = (event as any).relatedTarget as HTMLElement | null;
+            const imageSrc = relatedTarget?.dataset.imageSrc;
+            const imageAlt = relatedTarget?.dataset.imageAlt;
+            const img = document.getElementById("galleryModalImage") as HTMLImageElement | null;
+            
+            if (img && imageSrc) {
+                img.src = imageSrc;
+                img.alt = imageAlt || "Imagen ampliada";
+            }
+        }
     });
 </script>
 

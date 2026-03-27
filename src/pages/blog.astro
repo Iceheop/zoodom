@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PageIntro from '../components/PageIntro.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { blogPosts } from '../data/blogPosts';
+import Footer from '../components/Footer.astro';
+---
+<Layout>
+    <Nav />
+    <section class="container py-5">
+        <PageIntro
+            title="Blog ZOODOM"
+            description="Historias, novedades y contenido educativo sobre nuestros animales, programas de conservacion y experiencias para toda la familia."
+        />
+
+        <div class="row g-4" aria-label="Listado de articulos del blog">
+            {blogPosts.map((post) => (
+                <article class="col-12 col-md-6 col-lg-4">
+                    <BlogCard
+                        title={post.title}
+                        date={post.date}
+                        category={post.category}
+                        excerpt={post.excerpt}
+                        image={post.image}
+                        imageAlt={post.imageAlt}
+                        readTime={post.readTime}
+                        href={post.href}
+                    />
+                </article>
+            ))}
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <p class="mb-0">Pronto publicaremos mas articulos y recursos descargables.</p>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</Layout>
