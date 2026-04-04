@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import PageIntro from '../components/PageIntro.astro';
 import BlogCard from '../components/BlogCard.astro';
 import Footer from '../components/Footer.astro';
+import Section from '../layouts/Section.astro';
 import { getCollection } from 'astro:content';
 import familiaZoodomImg from '../assets/images/gallery-familia-zoodom.webp';
 import flamencosImg from '../assets/images/gallery-flamencos.webp';
@@ -28,7 +29,7 @@ const fallbackImageBySlug: Record<string, string> = {
 ---
 <Layout>
     <Nav />
-    <section class="container py-5">
+    <Section id="blog">
         <PageIntro
             title="Blog ZOODOM"
             description="Historias, novedades y contenido educativo sobre nuestros animales, programas de conservacion y experiencias para toda la familia."
@@ -56,6 +57,6 @@ const fallbackImageBySlug: Record<string, string> = {
                 <p class="mb-0">Pronto publicaremos mas articulos y recursos descargables.</p>
             </div>
         </div>
-    </section>
+    </Section>
     <Footer />
 </Layout>
