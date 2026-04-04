@@ -14,14 +14,14 @@ import { enlaces } from "../data/enlaces";
             <div class="d-flex align-items-center gap-4 pe-4" aria-hidden="false">
                 {enlaces.map((enlace) => (
                     <a href={enlace.url} class="logo-item d-inline-flex align-items-center justify-content-center p-2" aria-label={enlace.title}>
-                        <img src={enlace.image} alt={enlace.imageAlt} class="sponsor-logo-image">
+                        <img src={enlace.image} alt={enlace.imageAlt} width={enlace.imageWidth} height={enlace.imageHeight} class="sponsor-logo-image">
                     </a>
                 ))}
             </div>
             <div class="d-flex align-items-center gap-4 pe-4" aria-hidden="true">
                 {enlaces.map((enlace) => (
                     <a href={enlace.url} class="logo-item d-inline-flex align-items-center justify-content-center p-2" aria-label={enlace.title} tabindex="-1">
-                        <img src={enlace.image} alt="" class="sponsor-logo-image">
+                        <img src={enlace.image} alt="" width={enlace.imageWidth} height={enlace.imageHeight} class="sponsor-logo-image">
                     </a>
                 ))}
             </div>
