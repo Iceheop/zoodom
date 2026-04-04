@@ -1,5 +1,6 @@
 ---
 import Section from "../layouts/Section.astro";
+import PageIntro from "./PageIntro.astro";
 import patoEntreHojasImg from "../assets/images/gallery-pato-entre-hojas.webp";
 import flamencosImg from "../assets/images/gallery-flamencos.webp";
 import cisneNegroImg from "../assets/images/gallery-cisne-negro.webp";
@@ -10,32 +11,23 @@ import bisontesImg from "../assets/images/gallery-bisontes.webp";
 import antilopeImg from "../assets/images/gallery-antilope.webp";
 
 const galleryImages = [
-    /* { src: familiaZoodomImg.src, alt: "Familia visitando el zoologico" }, */
     { src: patoEntreHojasImg.src, alt: "Pato entre hojas en laguna" },
     { src: flamencosImg.src, alt: "Grupo de flamencos" },
     { src: cisneNegroImg.src, alt: "Cisne negro en agua" },
     { src: patoLagunaAzulImg.src, alt: "Pato en laguna azul" },
     { src: hipopotamoImg.src, alt: "Hipopotamo en su habitat" },
     { src: tortugaAguaImg.src, alt: "Tortuga en el agua" },
-    { src: bisontesImg.src, alt: "Bisontes en campo" },
     { src: antilopeImg.src, alt: "Antilope en pradera" },
-    /* { src: caminoSafariImg.src, alt: "Camino de safari en el zoologico" } */
+    { src: bisontesImg.src, alt: "Bisontes en campo" },
 ];
 ---
 
 <!-- Section Gallery -->
 <Section id="gallery">
-    <header class="d-flex justify-content-between">
-        <div>
-            <h2 class="display-4 fw-bold text-primary m-0">Galería</h2>
-            <p class="text-primary m-0">Explora nuestra colección de imágenes del zoológico.</p>
-        </div>
-        <div>
-            <a href="/galeria" aria-label="Ir a la pagina de galeria">
-                <i class="text-primary bi bi-arrow-right-short display-4"></i>
-            </a>
-        </div>
-    </header>
+    <PageIntro 
+        title="Galería" 
+        description="Explora nuestra colección de imágenes del zoológico."
+    />
     <div class="gallery-mosaic mt-5 pt-3" role="list" aria-label="Galeria de imagenes">
         {galleryImages.map((image, index) => (
             <article class={`mosaic-item item-${index + 1}`} role="listitem">

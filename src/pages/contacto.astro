@@ -13,47 +13,46 @@ import Footer from '../components/Footer.astro';
         />
 
         <div class="row g-4 align-items-stretch">
+            <div class="col-12 col-lg-5">
+                <aside class="card bg-primary py-4 px-2 border-0 shadow-sm h-100" style="border-radius: 60px 0 60px 0;">
+                    <div class="card-body text-white p-4 p-md-5">
+                        <h2 class="h3 fw-bold mb-4">Informacion de contacto</h2>
+                        <p class="mb-3 text-white"><strong>Telefono:</strong> +1 (809)-378-2149</p>
+                        <p class="mb-3 text-white"><strong>Correo:</strong> contacto@zoodom.lat</p>
+                        <p class="mb-3 text-white"><strong>Horario:</strong> Nuestro horario es de Martes a Domingo 9:00 - 5:00pm, para ingresar debes llegar antes de las 3:30pm pues a esta hora cierran las boleterías. Se puntual con la hora de ingreso que elijas. No abrimos los lunes para el público.</p>
+                        <p class="mb-0 text-white"><strong>Direccion:</strong> Av. de los Proceres, Arroyo Hondo, Santo Domingo.</p>
+                    </div>
+                </aside>
+            </div>
             <div class="col-12 col-lg-7">
-                <div class="card border-0 shadow-sm h-100" style="border-radius: 60px 0 60px 0;">
+                <div class="card bg-primary py-4 px-2 text-white border-0 shadow-sm h-100" style="border-radius: 60px 0 60px 0;">
                     <div class="card-body p-4 p-md-5">
                         <h2 class="h3 fw-bold mb-4">Envianos un mensaje</h2>
                         <form class="contacto-form" method="post" action="#" novalidate>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
                                     <label for="nombre" class="form-label fw-semibold">Nombre</label>
-                                    <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Tu nombre" autocomplete="name" required />
+                                    <input id="nombre" name="nombre" type="text" class="form-control border-0 py-3 px-4" placeholder="Tu nombre" autocomplete="name" required />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label for="correo" class="form-label fw-semibold">Correo</label>
-                                    <input id="correo" name="correo" type="email" class="form-control" placeholder="tu@email.com" autocomplete="email" required />
+                                    <input id="correo" name="correo" type="email" class="form-control border-0 py-3 px-4" placeholder="tu@email.com" autocomplete="email" required />
                                 </div>
                                 <div class="col-12">
                                     <label for="asunto" class="form-label fw-semibold">Asunto</label>
-                                    <input id="asunto" name="asunto" type="text" class="form-control" placeholder="Motivo del mensaje" required />
+                                    <input id="asunto" name="asunto" type="text" class="form-control border-0 py-3 px-4" placeholder="Motivo del mensaje" required />
                                 </div>
                                 <div class="col-12">
                                     <label for="mensaje" class="form-label fw-semibold">Mensaje</label>
-                                    <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="Escribe aqui tu mensaje" required></textarea>
+                                    <textarea id="mensaje" name="mensaje" class="form-control border-0 py-3 px-4" rows="5" placeholder="Escribe aqui tu mensaje" required></textarea>
                                 </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-brand px-4 py-2 rounded-pill">Enviar mensaje</button>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-light px-4 py-2 rounded-pill">Enviar mensaje</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-12 col-lg-5">
-                <aside class="card border-0 shadow-sm h-100" style="border-radius: 60px 0 60px 0;">
-                    <div class="card-body p-4 p-md-5">
-                        <h2 class="h3 fw-bold mb-4">Informacion de contacto</h2>
-                        <p class="mb-3"><strong>Telefono:</strong> +1 (809) 000-0000</p>
-                        <p class="mb-3"><strong>Correo:</strong> contacto@zoodom.lat</p>
-                        <p class="mb-3"><strong>Horario:</strong> Lunes a Domingo, 9:00 AM - 6:00 PM</p>
-                        <p class="mb-0"><strong>Direccion:</strong> Av. de los Proceres, Arroyo Hondo, Santo Domingo.</p>
-                    </div>
-                </aside>
             </div>
         </div>
     </section>

@@ -1,0 +1,175 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Section from '../../layouts/Section.astro';
+import familiaZoodomImg from '../../assets/images/gallery-familia-zoodom.webp';
+import flamencosImg from '../../assets/images/gallery-flamencos.webp';
+import hipopotamoImg from '../../assets/images/gallery-hipopotamo.webp';
+
+export async function getStaticPaths() {
+    const blogEntries = await getCollection('blog');
+    return blogEntries.map(entry => ({
+        params: { slug: entry.id.replace(/\.(md|mdx)$/i, '') },
+        props: { entry },
+    }));
+}
+
+interface Props {
+    entry: any;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, date, category, readTime, heroImage, tags } = entry.data;
+const slug = entry.id.replace(/\.(md|mdx)$/i, '');
+
+const fallbackImageBySlug: Record<string, string> = {
+    'nuevos-nacimientos': familiaZoodomImg.src,
+    'guia-visita-familia': flamencosImg.src,
+    'bienestar-animal': hipopotamoImg.src,
+};
+
+const displayImageSrc = heroImage?.src || fallbackImageBySlug[slug] || familiaZoodomImg.src;
+
+const dateFormatter = new Intl.DateTimeFormat('es-ES', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+});
+
+const publishedDate = dateFormatter.format(date);
+---
+
+<Layout>
+    <Nav />
+    <Section id="blog-post">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb" class="mb-5">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-primary">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="/blog" class="text-decoration-none text-primary">Blog</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{title}</li>
+            </ol>
+        </nav>
+
+        <article class="row">
+            <div class="col-lg-12 mx-auto">
+                <div class="ratio ratio-16x9 mb-5 rounded-2 overflow-hidden">
+                    <img src={displayImageSrc} alt={title} class="w-100 h-100" style="object-fit: cover;" />
+                </div>
+
+                <header class="mb-5">
+                    <h1 class="display-4 fw-bold text-primary mb-3">{title}</h1>
+                    
+                    <div class="mb-3">
+                        <p class="text-muted mb-2">
+                            <strong>Publicación:</strong> {publishedDate} • {readTime} lectura
+                        </p>
+                        <p class="text-muted mb-3">
+                            <strong>Categoría:</strong> 
+                            <span class="badge bg-primary">{category}</span>
+                        </p>
+                    </div>
+
+                    {tags && tags.length > 0 && (
+                        <div class="mb-4">
+                            <p class="mb-2"><strong>Tags:</strong></p>
+                            <div class="d-flex flex-wrap gap-2">
+                                {tags.map((tag: string) => (
+                                    <span class="badge bg-secondary">{tag}</span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </header>
+
+                <div class="article-content">
+                    <Content />
+                </div>
+
+                <div class="mt-5 pt-5 border-top">
+                    <a href="/blog" class="btn btn-brand">
+                        <i class="bi bi-arrow-left me-2"></i>Volver al Blog
+                    </a>
+                </div>
+            </div>
+        </article>
+    </Section>
+    <Footer />
+</Layout>
+
+<style>
+    .article-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .article-content :global(h1) {
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-brand-green-800);
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+    .article-content :global(h2) {
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-brand-green-800);
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+    .article-content :global(h3) {
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        color: var(--color-brand-green-600);
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .article-content :global(h4) {
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-brand-green-800);
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .article-content :global(p) {
+        margin-bottom: 1rem;
+        color: var(--bs-body-color);
+    }
+
+    .article-content :global(ul) {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        list-style: disc;
+    }
+
+    .article-content :global(li) {
+        margin-bottom: 0.5rem;
+        color: var(--bs-body-color);
+    }
+
+    .article-content :global(strong) {
+        font-weight: 600;
+        color: var(--bs-dark);
+    }
+
+    .article-content :global(em) {
+        font-style: italic;
+    }
+
+    .article-content :global(img) {
+        width: 100% !important;
+        max-width: 100%;
+        height: auto !important;
+        display: block;
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+    }
+    .ratio {
+        height: 550px !important;
+    }
+
+</style>

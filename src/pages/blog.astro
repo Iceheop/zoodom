@@ -3,8 +3,28 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import PageIntro from '../components/PageIntro.astro';
 import BlogCard from '../components/BlogCard.astro';
-import { blogPosts } from '../data/blogPosts';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import familiaZoodomImg from '../assets/images/gallery-familia-zoodom.webp';
+import flamencosImg from '../assets/images/gallery-flamencos.webp';
+import hipopotamoImg from '../assets/images/gallery-hipopotamo.webp';
+
+const blogPosts = await getCollection('blog');
+const sortedPosts = blogPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const dateFormatter = new Intl.DateTimeFormat('es-ES', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+});
+
+const toSlug = (id: string) => id.replace(/\.(md|mdx)$/i, '');
+
+const fallbackImageBySlug: Record<string, string> = {
+    'nuevos-nacimientos': familiaZoodomImg.src,
+    'guia-visita-familia': flamencosImg.src,
+    'bienestar-animal': hipopotamoImg.src,
+};
 ---
 <Layout>
     <Nav />
@@ -15,17 +35,17 @@ import Footer from '../components/Footer.astro';
         />
 
         <div class="row g-4" aria-label="Listado de articulos del blog">
-            {blogPosts.map((post) => (
+            {sortedPosts.map((post) => (
                 <article class="col-12 col-md-6 col-lg-4">
                     <BlogCard
-                        title={post.title}
-                        date={post.date}
-                        category={post.category}
-                        excerpt={post.excerpt}
-                        image={post.image}
-                        imageAlt={post.imageAlt}
-                        readTime={post.readTime}
-                        href={post.href}
+                        title={post.data.title}
+                        date={dateFormatter.format(post.data.date)}
+                        category={post.data.category}
+                        excerpt={post.data.title}
+                        image={post.data.heroImage?.src || fallbackImageBySlug[toSlug(post.id)] || familiaZoodomImg.src}
+                        imageAlt={post.data.title}
+                        readTime={post.data.readTime}
+                        href={`/blog/${toSlug(post.id)}`}
                     />
                 </article>
             ))}

@@ -25,7 +25,7 @@ export const blogPosts: BlogPost[] = [
         image: familiaZoodomImg.src,
         imageAlt: "Familia en recorrido educativo de ZOODOM",
         readTime: "4 min",
-        href: "/blog"
+        href: "/blog/nuevos-nacimientos"
     },
     {
         id: 2,
@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
         image: flamencosImg.src,
         imageAlt: "Flamencos en zona de observacion",
         readTime: "5 min",
-        href: "/blog"
+        href: "/blog/guia-visita-familia"
     },
     {
         id: 3,
@@ -49,6 +49,6 @@ export const blogPosts: BlogPost[] = [
         image: hipopotamoImg.src,
         imageAlt: "Hipopotamo en habitat controlado",
         readTime: "6 min",
-        href: "/blog"
+        href: "/blog/bienestar-animal"
     }
 ];

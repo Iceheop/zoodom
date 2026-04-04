@@ -1,25 +1,54 @@
 ---
 import logo from '../assets/ui/logo.svg';
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+const isActive = (href: string) => {
+    const normalizedHref = href.replace(/\/+$/, '') || '/';
+    if (normalizedHref === '/') return currentPath === '/';
+    return currentPath === normalizedHref || currentPath.startsWith(normalizedHref + '/');
+};
 ---
+
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fade-in-up">
     <div class="container px-3 px-lg-5 py-3">
-        <a class="navbar-brand me-0" href="/index" aria-label="Ir al inicio">
+        <a class="navbar-brand me-0" href="/" aria-label="Ir al inicio">
             <!-- Móvil -->
-            <img src={logo.src} class="img-fluid d-inline d-sm-none" width="80" alt="Logo"/>
+            <img src={logo.src} class="img-fluid d-inline d-sm-none" width="80" alt="Logo" />
             <!-- Tablet/Desktop -->
-            <img src={logo.src} class="img-fluid d-none d-sm-inline" width="110" alt="Logo"/>
+            <img src={logo.src} class="img-fluid d-none d-sm-inline" width="110" alt="Logo" />
         </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0 gap-lg-4 pt-3 pt-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="/especies">Especies</a></li>
-                <li class="nav-item"><a class="nav-link" href="/galeria">Galeria</a></li>
-                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+                <li class="nav-item">
+                    <a class={`nav-link ${isActive('/') ? 'active' : ''}`} href="/" aria-current={isActive('/') ? 'page' : undefined}>Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class={`nav-link ${isActive('/especies') ? 'active' : ''}`} href="/especies" aria-current={isActive('/especies') ? 'page' : undefined}>Especies</a>
+                </li>
+                <li class="nav-item">
+                    <a class={`nav-link ${isActive('/galeria') ? 'active' : ''}`} href="/galeria" aria-current={isActive('/galeria') ? 'page' : undefined}>Galería</a>
+                </li>
+                <li class="nav-item">
+                    <a class={`nav-link ${isActive('/blog') ? 'active' : ''}`} href="/blog" aria-current={isActive('/blog') ? 'page' : undefined}>Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class={`nav-link ${isActive('/contacto') ? 'active' : ''}`} href="/contacto" aria-current={isActive('/contacto') ? 'page' : undefined}>Contacto</a>
+                </li>
             </ul>
         </div>
     </div>
