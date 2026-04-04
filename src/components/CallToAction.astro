@@ -1,14 +1,18 @@
 ---
+import { Image } from "astro:assets";
 import ctaBgImg from "../assets/images/gallery-familia-zoodom.webp";
 ---
 
 <section id="cta" class="py-5 fade-in-up">
     <article class="position-relative overflow-hidden text-white d-flex align-items-center justify-content-center text-center px-3 py-5" style="min-height: 500px; isolation: isolate;">
-        <img
-            src={ctaBgImg.src}
+        <Image
+            src={ctaBgImg}
             alt="Familias visitando el zoologico"
             class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-0"
             loading="lazy"
+            widths={[480, 768, 1024, 1135]}
+            sizes="100vw"
+            quality={58}
         />
         <div class="position-absolute top-0 start-0 w-100 h-100 opacity-50 z-1" style="background-color: var(--color-neutral-black-900);"></div>
 

@@ -1,11 +1,13 @@
 ---
+import { Image } from "astro:assets";
 import Shape from "../assets/ui/shape.svg";
+import type { ImageMetadata } from "astro";
 
 type CardAnimalProps = {
     name: string;
     scientificName: string;
     description: string;
-    image: string;
+    image: ImageMetadata;
     imageAlt: string;
     shapeColor?: string;
     variant?: "default" | "light-surface";
@@ -66,7 +68,14 @@ const shapeStyle = `--animal-shape-color: ${shapeFillColor}; --animal-shape-mask
         </button>
     </div>
     <span class="shape shape-mask position-absolute top-100 start-100 translate-middle" aria-hidden="true"></span>
-    <img src={image} alt={imageAlt} class="animal-image img-fluid position-absolute bottom-0 end-0">
+    <Image
+        src={image}
+        alt={imageAlt}
+        class="animal-image img-fluid position-absolute bottom-0 end-0"
+        widths={[152, 201, 246, 300, 496]}
+        sizes="(min-width: 992px) 246px, (max-width: 768px) 35vw, 200px"
+        quality={60}
+    />
 </article>
 <!-- End Animal Card -->
 
@@ -84,7 +93,14 @@ const shapeStyle = `--animal-shape-color: ${shapeFillColor}; --animal-shape-mask
                 <section class="row g-0 align-items-stretch">
                     <section class="col-12 col-md-5 animal-modal-visual position-relative">
                         <span class="shape shape-mask animal-modal-shape position-absolute top-100 start-100 translate-middle" aria-hidden="true"></span>
-                        <img src={image} alt={imageAlt} class="animal-modal-image img-fluid position-absolute bottom-0 end-0" />
+                        <Image
+                            src={image}
+                            alt={imageAlt}
+                            class="animal-modal-image img-fluid position-absolute bottom-0 end-0"
+                            widths={[188, 220, 300, 496]}
+                            sizes="(min-width: 992px) 300px, (min-width: 768px) 220px, 188px"
+                            quality={60}
+                        />
                     </section>
                     <section class="col-12 col-md-7 p-4 p-md-5">
                         <h3 class="fw-bold mb-1 text-white" id={modalTitleId}>{name}</h3>

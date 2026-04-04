@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import HeroImg from '../assets/images/hero.webp';
 ---
 <!-- Header -->
@@ -11,7 +12,15 @@ import HeroImg from '../assets/images/hero.webp';
                 <a href="#ubicacion" class="btn btn-brand px-5 py-2 rounded-pill">Planea tu visita</a>
             </div>
             <div class="col-lg-6 col-md-6 col-12 d-none d-md-block" aria-hidden="true">
-                <img src={HeroImg.src} class="img-fluid hero-img w-100 position-absolute bottom-0 end-0" alt="Familia visitando el zoologico" loading="eager">
+                <Image
+                    src={HeroImg}
+                    alt="Familia visitando el zoologico"
+                    class="img-fluid hero-img w-100 position-absolute bottom-0 end-0"
+                    loading="eager"
+                    widths={[420, 600, 866]}
+                    sizes="(min-width: 992px) 50vw, (min-width: 768px) 50vw, 100vw"
+                    quality={65}
+                />
             </div>
         </div>
     </div>

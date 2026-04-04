@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Section from "../layouts/Section.astro";
 import PageIntro from "./PageIntro.astro";
 import patoEntreHojasImg from "../assets/images/gallery-pato-entre-hojas.webp";
@@ -11,15 +12,21 @@ import bisontesImg from "../assets/images/gallery-bisontes.webp";
 import antilopeImg from "../assets/images/gallery-antilope.webp";
 
 const galleryImages = [
-    { src: patoEntreHojasImg.src, alt: "Pato entre hojas en laguna" },
-    { src: flamencosImg.src, alt: "Grupo de flamencos" },
-    { src: cisneNegroImg.src, alt: "Cisne negro en agua" },
-    { src: patoLagunaAzulImg.src, alt: "Pato en laguna azul" },
-    { src: hipopotamoImg.src, alt: "Hipopotamo en su habitat" },
-    { src: tortugaAguaImg.src, alt: "Tortuga en el agua" },
-    { src: antilopeImg.src, alt: "Antilope en pradera" },
-    { src: bisontesImg.src, alt: "Bisontes en campo" },
+    { src: patoEntreHojasImg, alt: "Pato entre hojas en laguna" },
+    { src: flamencosImg, alt: "Grupo de flamencos" },
+    { src: cisneNegroImg, alt: "Cisne negro en agua" },
+    { src: patoLagunaAzulImg, alt: "Pato en laguna azul" },
+    { src: hipopotamoImg, alt: "Hipopotamo en su habitat" },
+    { src: tortugaAguaImg, alt: "Tortuga en el agua" },
+    { src: antilopeImg, alt: "Antilope en pradera" },
+    { src: bisontesImg, alt: "Bisontes en campo" },
 ];
+
+const getTileSizes = (index: number): string => {
+    if (index === 0) return "(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw";
+    if (index === 2) return "(min-width: 992px) 50vw, (min-width: 768px) 50vw, 100vw";
+    return "(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw";
+};
 ---
 
 <!-- Section Gallery -->
@@ -36,14 +43,17 @@ const galleryImages = [
                     class="gallery-trigger"
                     data-bs-toggle="modal"
                     data-bs-target="#galleryModal"
-                    data-image-src={image.src}
+                    data-image-src={image.src.src}
                     data-image-alt={image.alt}
                 >
-                    <img
+                    <Image
                         src={image.src}
                         alt={image.alt}
                         class="img-fluid w-100 gallery-photo"
                         loading="lazy"
+                        widths={[280, 420, 514, 760, 1135]}
+                        sizes={getTileSizes(index)}
+                        quality={58}
                     />
                 </button>
             </article>
